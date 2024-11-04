@@ -1,21 +1,28 @@
 {
-  "name": "ai-workflow",
+  "name": "n8n-ai-workflow",
   "version": "1.0.0",
-  "description": "AI workflow automation with n8n, qdrant, and other services",
+  "description": "AI workflow automation with n8n, deployed on DigitalOcean App Platform",
   "private": true,
   "scripts": {
-    "start": "docker-compose up -d",
+    "start": "n8n start",
+    "dev": "docker-compose up -d",
     "stop": "docker-compose down",
     "logs": "docker-compose logs -f",
     "clean": "docker-compose down -v",
-    "backup": "docker-compose exec n8n n8n export:workflow --output=/backup/workflows && docker-compose exec n8n n8n export:credentials --output=/backup/credentials"
+    "backup": "n8n export:workflow --output=/backup/workflows && n8n export:credentials --output=/backup/credentials",
+    "deploy": "doctl apps create --spec app-spec.yml",
+    "update": "doctl apps update your-app-id --spec app-spec.yml"
   },
   "keywords": [
     "n8n",
-    "qdrant",
     "workflow",
-    "automation"
+    "automation",
+    "digitalocean",
+    "app-platform"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 } 
