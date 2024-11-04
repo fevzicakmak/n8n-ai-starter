@@ -56,7 +56,7 @@ services:
     value: "5678"
   github:
     branch: main
-    deploy_on_push: true
+    deploy_on_push: false
     repo: fevzicakmak/n8n-ai-starter
   health_check:
     http_path: /healthz
