@@ -45,22 +45,22 @@ services:
   - key: N8N_PERSONALIZATION_ENABLED
     scope: RUN_TIME
     value: "false"
-  - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+  - key: N8N_LOG_LEVEL
     scope: RUN_TIME
-    value: "true"
-  - key: N8N_PROTOCOL
-    scope: RUN_TIME
-    value: https
+    value: debug
   - key: N8N_PORT
     scope: RUN_TIME
     value: "5678"
+  - key: N8N_HOST
+    scope: RUN_TIME
+    value: ${APP_URL}
   github:
     branch: main
     deploy_on_push: false
     repo: fevzicakmak/n8n-ai-starter
   health_check:
     http_path: /healthz
-    initial_delay_seconds: 30
+    initial_delay_seconds: 60
     period_seconds: 30
     timeout_seconds: 30
     success_threshold: 1
