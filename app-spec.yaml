@@ -33,11 +33,43 @@ services:
   - key: DB_POSTGRESDB_DATABASE
     scope: RUN_TIME
     value: ${db.DATABASE}
+  - key: N8N_ENCRYPTION_KEY
+    scope: RUN_TIME
+    value: c8e052c98f56e89123f735fa32a2ee45d271462e851ab2
+  - key: N8N_USER_MANAGEMENT_JWT_SECRET
+    scope: RUN_TIME
+    value: 8f4c6d3a91b5e2c7f0d8e9a4b7c6d3a91b5e2c7f0d8e9a4b7c6d3a91b5e2c7f
+  - key: N8N_DIAGNOSTICS_ENABLED
+    scope: RUN_TIME
+    value: "false"
+  - key: N8N_PERSONALIZATION_ENABLED
+    scope: RUN_TIME
+    value: "false"
+  - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+    scope: RUN_TIME
+    value: "true"
+  - key: N8N_PROTOCOL
+    scope: RUN_TIME
+    value: https
+  - key: N8N_PORT
+    scope: RUN_TIME
+    value: "5678"
   github:
     branch: main
     deploy_on_push: true
     repo: fevzicakmak/n8n-ai-starter
+  health_check:
+    http_path: /healthz
+    initial_delay_seconds: 30
+    period_seconds: 30
+    timeout_seconds: 30
+    success_threshold: 1
+    failure_threshold: 3
   http_port: 5678
   instance_count: 1
   instance_size_slug: apps-s-1vcpu-0.5gb
   name: n8n-ai-workflow
+  volumes:
+  - name: n8n-data
+    mount_path: /home/node/.n8n
+    size_gb: 1
