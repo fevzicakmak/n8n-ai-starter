@@ -67,6 +67,5 @@ services:
     failure_threshold: 3
   http_port: 5678
   instance_count: 1
-  instance_size_slug: apps-s-1vcpu-0.5gb
+  instance_size_slug: basic-xxs
   name: n8n-ai-workflow
-  file_system_type: "PER_APP"
