@@ -1,0 +1,21 @@
+{
+  "name": "ai-workflow",
+  "version": "1.0.0",
+  "description": "AI workflow automation with n8n, qdrant, and other services",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "logs": "docker-compose logs -f",
+    "clean": "docker-compose down -v",
+    "backup": "docker-compose exec n8n n8n export:workflow --output=/backup/workflows && docker-compose exec n8n n8n export:credentials --output=/backup/credentials"
+  },
+  "keywords": [
+    "n8n",
+    "qdrant",
+    "workflow",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC"
+} 

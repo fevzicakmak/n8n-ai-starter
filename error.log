@@ -1,0 +1,14 @@
+INFO[0022] RUN npm install                              
+INFO[0022] Cmd: /bin/sh                                 
+INFO[0022] Args: [-c npm install]                       
+INFO[0022] Running: [/bin/sh -c npm install]            
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path /app/package.json
+npm ERR! errno -2
+npm ERR! enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/app/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+npm ERR! A complete log of this run can be found in: /root/.npm/_logs/2024-11-04T19_11_38_341Z-debug-0.log
+error building image: error building stage: failed to execute command: waiting for process to exit: exit status 254
+command exited with code 254
