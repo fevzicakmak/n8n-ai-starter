@@ -1,12 +1,10 @@
 # Use n8n as base image since it's your main application
 FROM n8nio/n8n:latest
 
-# Install additional dependencies
-RUN apt get update && \
-    apt get install -y \
+# Install additional dependencies using apk (Alpine package manager)
+RUN apk add --no-cache \
     postgresql-client \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+    curl
 
 # Create directory for n8n data
 RUN mkdir -p /home/node/.n8n
