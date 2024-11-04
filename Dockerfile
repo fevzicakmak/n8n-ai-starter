@@ -2,8 +2,8 @@
 FROM n8nio/n8n:latest
 
 # Install additional dependencies
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt update && \
+    apt install -y \
     postgresql-client \
     curl \
     && rm -rf /var/lib/apt/lists/*
