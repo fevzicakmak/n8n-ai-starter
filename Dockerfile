@@ -1,17 +1,27 @@
 # Use n8n as base image since it's your main application
 FROM n8nio/n8n:latest
 
+# Switch to root user for package installation
+USER root
+
 # Install additional dependencies using apk (Alpine package manager)
 RUN apk add --no-cache \
     postgresql-client \
     curl
 
 # Create directory for n8n data
-RUN mkdir -p /home/node/.n8n
+RUN mkdir -p /home/node/.n8n && \
+    chown -R node:node /home/node/.n8n
 
 # Copy configuration files
 COPY .env.production /home/node/.n8n/.env
 COPY n8n/backup /backup
+
+# Set proper ownership
+RUN chown -R node:node /home/node/.n8n /backup
+
+# Switch back to node user
+USER node
 
 # Set environment variables
 ENV NODE_ENV=production
