@@ -69,7 +69,4 @@ services:
   instance_count: 1
   instance_size_slug: apps-s-1vcpu-0.5gb
   name: n8n-ai-workflow
-  volumes:
-  - name: n8n-data
-    mount_path: /home/node/.n8n
-    size_gb: 1
+  file_system_type: "PER_APP"
