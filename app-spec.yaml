@@ -39,12 +39,6 @@ services:
   - key: N8N_USER_MANAGEMENT_JWT_SECRET
     scope: RUN_TIME
     value: 8f4c6d3a91b5e2c7f0d8e9a4b7c6d3a91b5e2c7f0d8e9a4b7c6d3a91b5e2c7f
-  - key: N8N_DIAGNOSTICS_ENABLED
-    scope: RUN_TIME
-    value: "false"
-  - key: N8N_PERSONALIZATION_ENABLED
-    scope: RUN_TIME
-    value: "false"
   - key: N8N_LOG_LEVEL
     scope: RUN_TIME
     value: debug
@@ -54,17 +48,20 @@ services:
   - key: N8N_HOST
     scope: RUN_TIME
     value: ${APP_URL}
+  - key: N8N_PROTOCOL
+    scope: RUN_TIME
+    value: https
   github:
     branch: main
     deploy_on_push: false
     repo: fevzicakmak/n8n-ai-starter
   health_check:
     http_path: /healthz
-    initial_delay_seconds: 60
+    initial_delay_seconds: 120
     period_seconds: 30
     timeout_seconds: 30
     success_threshold: 1
-    failure_threshold: 3
+    failure_threshold: 5
   http_port: 5678
   instance_count: 1
   instance_size_slug: basic-xxs
