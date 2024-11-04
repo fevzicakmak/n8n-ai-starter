@@ -3,7 +3,9 @@ FROM n8nio/n8n:latest
 USER root
 
 # Install essential dependencies
-RUN apk add --no-cache curl
+RUN apk add --no-cache \
+    curl \
+    postgresql-client
 
 # Create and set permissions for n8n directory
 RUN mkdir -p /home/node/.n8n && \
@@ -12,6 +14,10 @@ RUN mkdir -p /home/node/.n8n && \
 
 # Copy configuration files
 COPY --chown=node:node .env.production /home/node/.n8n/.env
+COPY --chown=node:node docker-entrypoint.sh /docker-entrypoint.sh
+
+# Set proper permissions
+RUN chmod +x /docker-entrypoint.sh
 
 USER node
 WORKDIR /home/node/.n8n
@@ -27,8 +33,8 @@ ENV NODE_ENV=production \
 EXPOSE 5678
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
   CMD curl -f http://localhost:5678/healthz || exit 1
 
-# Start n8n with debug logging
-CMD ["sh", "-c", "n8n start --debug"]
+# Use our custom entrypoint script
+CMD ["/docker-entrypoint.sh"]
